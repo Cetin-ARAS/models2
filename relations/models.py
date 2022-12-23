@@ -7,7 +7,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
 class Adress(models.Model):
     name = models.CharField(max_length=20)
@@ -17,11 +17,11 @@ class Adress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} {self.user.username}'
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
     user = models.ManyToManyField(User)
 
-      def __str__(self):
+    def __str__(self):
         return self.name
